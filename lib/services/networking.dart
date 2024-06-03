@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:weatherapp/Components/location.dart';
 
@@ -8,11 +10,11 @@ class Networking{
 
 
 
-  void getPositionWeather() async{
+  Future getPositionWeather() async{
     await _location.getLocation();
     http.Response response =await http.get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=${_location.latitude}&lon=${_location.logtitude}&appid=$apiKey&units=metric'));
     if(response.statusCode==200){
-      print(response.body);
+      return json.decode(response.body);
     }else{
       print("error");
     }

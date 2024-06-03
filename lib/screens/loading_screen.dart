@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:weatherapp/Components/location.dart';
 
 import '../services/networking.dart';
+import 'location_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -13,14 +14,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
 
   Networking networking=Networking();
+  dynamic weatherData;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    networking.getPositionWeather();
+    getWeatherData();
 
+  }
+
+  void getWeatherData()async{
+   weatherData=await networking.getPositionWeather();
   }
 
 
@@ -31,7 +37,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-
+            Navigator.push(context, MaterialPageRoute(builder: (context) => LocationScreen(weatherData: weatherData,),));
           },
           child: Text('Get Location'),
         ),
