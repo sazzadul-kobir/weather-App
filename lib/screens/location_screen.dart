@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/services/weather.dart';
 
+import '../Components/location.dart';
+import '../services/networking.dart';
 import '../utilities/constant.dart';
 
 
@@ -38,6 +40,11 @@ class _LocationScreenState extends State<LocationScreen> {
     });
   }
 
+  void Weatherupdate() async{
+    dynamic weatherdata= await Networking().getPositionWeather();
+    UpdateUi(weatherdata);
+  }
+
 
 
   @override
@@ -62,7 +69,9 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Weatherupdate();
+                    },
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,

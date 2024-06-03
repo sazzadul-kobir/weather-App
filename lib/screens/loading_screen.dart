@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:lottie/lottie.dart';
 import 'package:weatherapp/Components/location.dart';
 
 import '../services/networking.dart';
@@ -22,6 +25,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     super.initState();
 
     getWeatherData();
+    Timer(Duration(seconds: 3),(){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LocationScreen(weatherData: weatherData),));
+
+    });
+
 
   }
 
@@ -34,12 +42,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => LocationScreen(weatherData: weatherData,),));
-          },
-          child: Text('Get Location'),
+      backgroundColor: Colors.blueAccent,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset('assets/lottie/anim.json'),
+              SizedBox(height: 50,),
+              Lottie.asset('assets/lottie/loading.json',height: 100)
+            ],
+          ),
         ),
       ),
     );
