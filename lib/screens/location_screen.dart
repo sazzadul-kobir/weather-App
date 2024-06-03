@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weatherapp/services/weather.dart';
 
 import '../Components/location.dart';
@@ -22,6 +23,7 @@ class _LocationScreenState extends State<LocationScreen> {
   var Cityname;
   var WeatherMessage;
 
+
   @override
   void initState() {
     // TODO: implement initState
@@ -37,6 +39,7 @@ class _LocationScreenState extends State<LocationScreen> {
       Condition=weatherData['weather'][0]["id"];
       WeatherMessage=WeatherModel().getMessage(temprature!);
       Cityname=weatherData['name'];
+
     });
   }
 
@@ -50,69 +53,66 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage('https://cdn.dribbble.com/users/925716/screenshots/4531553/attachments/1025680/beautiful_night.jpg?resize=400x300&vertical=center',),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
-          ),
-        ),
-        constraints: BoxConstraints.expand(),
-        child: SafeArea(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Weatherupdate();
-                    },
-                    child: Icon(
-                      Icons.near_me,
-                      size: 50.0,
-                    ),
+                children: [
+                  IconButton(
+                      onPressed: (){
+
+                        Weatherupdate();
+                      },
+                      icon: Icon(Icons.location_on, size: 40,)
+        
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.location_city,
-                      size: 50.0,
-                    ),
-                  ),
+                  IconButton(
+                      onPressed: (){
+
+                      },
+                      icon: Icon(Icons.location_city, size: 40,)
+                  )
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      '$temprature°',
-                      style: kTempTextStyle,
-                    ),
-                    Text(
-                      WeatherModel().getWeatherIcon(Condition),
-                      style: kConditionTextStyle,
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 10,
               ),
-              Padding(
-                padding: EdgeInsets.only(right: 15.0),
-                child: Text(
-                  '$WeatherMessage in $Cityname',
-                  textAlign: TextAlign.right,
-                  style: kMessageTextStyle,
-                ),
-              ),
+              Expanded(child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text("${temprature.toString()}°",
+                      style: TextStyle(
+                        fontSize: 70
+                      ),
+
+                      ),
+                      SizedBox(width: 10,),
+                      Text(
+                        WeatherModel().getWeatherIcon(Condition),
+                        style: TextStyle(
+                          fontSize: 40
+                        ),
+                      )
+                    ],
+                  ),
+                  Text("$WeatherMessage in $Cityname",
+                  style: TextStyle(
+                    fontSize: 15
+                  ),
+                  )
+                ],
+              )),
+
+              SvgPicture.asset('assets/svg/drizzle.svg',fit: BoxFit.fitHeight),
             ],
           ),
         ),
-      ),
+      )
     );
   }
 }
