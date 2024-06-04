@@ -52,6 +52,9 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    Map<String,String> iconndbackground=WeatherModel().getWeatherIconndBackgroundimg(Condition);
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -93,7 +96,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       ),
                       SizedBox(width: 10,),
                       Text(
-                        WeatherModel().getWeatherIcon(Condition),
+                        iconndbackground['icon']!,
                         style: TextStyle(
                           fontSize: 40
                         ),
@@ -108,7 +111,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ],
               )),
 
-              SvgPicture.asset('assets/svg/drizzle.svg',fit: BoxFit.fitHeight),
+              SvgPicture.asset(iconndbackground['background']!,fit: BoxFit.fitHeight),
             ],
           ),
         ),

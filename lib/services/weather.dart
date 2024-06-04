@@ -1,21 +1,45 @@
 class WeatherModel {
-  String getWeatherIcon(int condition) {
+  Map<String,String> getWeatherIconndBackgroundimg(int condition) {
     if (condition < 300) {
-      return '🌩';
+      return {
+        "icon":'🌩',
+        "background":'assets/svg/thunderstrom.svg'
+      };
     } else if (condition < 400) {
-      return '🌧';
+      return {
+        "icon":'🌧',
+        'background':'assets/svg/drizzle.svg'
+      };
     } else if (condition < 600) {
-      return '☔️';
+      return {
+        'icon':'☔️',
+        'background':'assets/svg/rain.svg'
+      };
     } else if (condition < 700) {
-      return '☃️';
+      return {
+        'icon':'☃️',
+        'background':'assets/svg/snow.svg'
+      };
     } else if (condition < 800) {
-      return '🌫';
+      return {
+        'icon':'🌫',
+        'background':'assets/svg/haze.svg'
+      };
     } else if (condition == 800) {
-      return '☀️';
+      return {
+        'icon':'☀️',
+        'background':'assets/svg/sunnyday.svg'
+      };
     } else if (condition <= 804) {
-      return '☁️';
+      return {
+        'icon':'☁️',
+        'background':'assets/svg/clouds.svg'
+      };
     } else {
-      return '🤷‍';
+      return {
+        'icon':'🤷‍',
+        'background':'assets/svg/else.svg'
+      };
     }
   }
 
