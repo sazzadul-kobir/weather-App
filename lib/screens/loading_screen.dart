@@ -26,7 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     getWeatherData();
     Timer(Duration(seconds: 3),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LocationScreen(weatherData: weatherData),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>LocationScreen(weatherData: weatherData),));
 
     });
 
@@ -34,7 +34,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getWeatherData()async{
-   weatherData=await networking.getPositionWeather();
+   try{
+     weatherData=await networking.getPositionWeather();
+   }catch(e){
+     print(e);
+   }
   }
 
 
