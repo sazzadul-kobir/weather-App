@@ -1,16 +1,23 @@
-# weatherapp
+# Weather App
 
-A new Flutter project.
+This Weather App is a simple and intuitive application that provides real-time weather updates for your current location and any city you search for. The app utilizes the OpenWeather API to fetch the latest weather data.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Loading Screen:** A splash screen that appears while the app is initializing.
+- **Location Weather Screen:** Displays the weather information for your current location. It includes:
+  - A button to update the weather data for your current location.
+  - A button to navigate to the City Weather screen.
+- **City Weather Screen:** Allows you to search for and view the weather information for any city worldwide.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Loading Screen
+![Screenshot_6](https://github.com/sazzadul-kobir/weather-App/assets/154998330/0fa64a45-99ff-4d02-acb6-c69e7419a947)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Location Weather Screen
+![Screenshot_4](https://github.com/sazzadul-kobir/weather-App/assets/154998330/dd44b08c-e9e0-413d-9bda-7040f392b333)
+
+### City Weather Screen
+![Screenshot_5](https://github.com/sazzadul-kobir/weather-App/assets/154998330/ea405672-4b0c-405a-8dd1-c2ce428bf570)
+
